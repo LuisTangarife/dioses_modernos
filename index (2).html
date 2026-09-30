@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dioses Modernos — La Paga del Pecado es Muerte</title>
+<meta name="description" content="Novela de fantasía oscura publicada por entregas.">
+<meta property="og:title" content="Dioses Modernos">
+<meta property="og:description" content="La Paga del Pecado es Muerte. Novela de fantasía oscura publicada por entregas.">
+<meta property="og:type" content="book">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fondo:#1b1317;
+    --papel:#241a1f;
+    --texto:#e6dccb;
+    --tenue:#a2958a;
+    --sangre:#9a2e3b;
+    --laton:#b39554;
+    --linea:#3a2a31;
+    --tam:1.2rem;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--fondo);color:var(--texto);
+    font-family:"EB Garamond",Georgia,serif;font-size:var(--tam);line-height:1.7;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--laton);outline-offset:3px}
+  .barra{position:fixed;top:0;left:0;height:3px;width:0;background:var(--sangre);z-index:10}
+  main{max-width:38rem;margin:0 auto;padding:4rem 1.4rem 5rem}
+  h1,h2{font-family:"IM Fell English","EB Garamond",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
+  .portada{text-align:center;padding:2rem 0 2.5rem;border-bottom:1px solid var(--linea)}
+  .portada h1{font-size:clamp(2.6rem,11vw,4rem);letter-spacing:.01em}
+  .portada .sub{font-family:"IM Fell English",serif;font-style:italic;color:var(--laton);font-size:1.25rem;margin:.9rem 0 0}
+  .portada .autor{color:var(--tenue);margin:1.6rem 0 0;font-size:1rem}
+  .sinopsis{color:var(--tenue);font-style:italic;text-align:center;margin:2rem auto;max-width:30rem}
+  .lista{list-style:none;padding:0;margin:0}
+  .lista li{border-bottom:1px solid var(--linea)}
+  .lista a,.lista .cerrado{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.05rem .2rem;text-decoration:none}
+  .lista a:hover h2{color:var(--laton)}
+  .lista h2{font-size:1.45rem}
+  .lista .num{color:var(--tenue);font-size:.95rem;display:block;margin-bottom:.15rem}
+  .lista .estado{color:var(--tenue);font-size:.95rem;white-space:nowrap}
+  .lista .cerrado{opacity:.55}
+  /* lectura */
+  .cap-cab{text-align:center;margin:1rem 0 2.5rem}
+  .cap-cab .num{color:var(--laton);font-family:"IM Fell English",serif;font-style:italic}
+  .cap-cab h2{font-size:clamp(2rem,8vw,2.8rem);margin-top:.4rem}
+  .cap-cab .adorno{color:var(--sangre);margin-top:1.2rem;letter-spacing:.6em}
+  .texto p{margin:0 0 1.15em;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  .texto p:first-child::first-letter{
+    font-family:"IM Fell English",serif;float:left;font-size:3.8em;line-height:.85;
+    padding:.08em .1em 0 0;color:var(--sangre)
+  }
+  .texto .escena{text-align:center;color:var(--sangre);letter-spacing:.6em;margin:1.8em 0}
+  .nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--linea)}
+  .nav a,.nav span{color:var(--laton);text-decoration:none;font-size:1.05rem}
+  .nav span{color:var(--tenue);opacity:.6}
+  .nav a:hover{text-decoration:underline}
+  .herr{position:fixed;right:.8rem;bottom:.8rem;display:flex;gap:.4rem;z-index:10}
+  .herr button{
+    font:inherit;font-size:1rem;color:var(--texto);background:var(--papel);
+    border:1px solid var(--linea);border-radius:.4rem;min-width:2.6rem;height:2.6rem;cursor:pointer
+  }
+  .herr button:hover{border-color:var(--laton)}
+  .oculto{display:none}
+  footer{text-align:center;color:var(--tenue);font-size:.9rem;margin-top:3rem}
+</style>
+</head>
+<body>
+<div class="barra" id="barra"></div>
+
+<main>
+  <!-- PORTADA -->
+  <section id="vista-inicio">
+    <header class="portada">
+      <h1>Dioses Modernos</h1>
+      <p class="sub">La Paga del Pecado es Muerte</p>
+      <p class="autor">Luis Tangarife</p>
+    </header>
+    <p class="sinopsis" id="sinopsis"></p>
+    <ul class="lista" id="lista"></ul>
+    <footer>Se publican nuevos capítulos por entregas. Sigue el avance en Instagram.</footer>
+  </section>
+
+  <!-- LECTURA -->
+  <article id="vista-lectura" class="oculto">
+    <header class="cap-cab">
+      <div class="num" id="cap-num"></div>
+      <h2 id="cap-titulo"></h2>
+      <div class="adorno">✦</div>
+    </header>
+    <div class="texto" id="cap-texto"></div>
+    <nav class="nav" id="cap-nav"></nav>
+  </article>
+</main>
+
+<div class="herr oculto" id="herr">
+  <button id="menos" aria-label="Letra más pequeña">A−</button>
+  <button id="mas" aria-label="Letra más grande">A+</button>
+  <button id="inicio" aria-label="Volver al índice">☰</button>
+</div>
+
+<script>
+/* =====================================================
+   AQUÍ EDITAS TU CONTENIDO
+   - Cada capítulo es un bloque { titulo, publicado, texto }.
+   - Deja una línea en blanco entre párrafos.
+   - Escribe *** en una línea sola para un cambio de escena.
+   - Cuando un capítulo esté listo, pon publicado: true.
+   ===================================================== */
+const SINOPSIS = "Escribe aquí una o dos frases que inviten a leer, sin revelar demasiado.";
+
+const capitulos = [
+  {
+    titulo: "Título del capítulo uno",
+    publicado: true,
+    texto: `Pega aquí el primer párrafo de tu capítulo.
+
+Este es el segundo párrafo. Deja siempre una línea en blanco entre uno y otro.
+
+***
+
+Y así puedes marcar un cambio de escena.`
+  },
+  { titulo: "Título del capítulo dos",   publicado: false, texto: `` },
+  { titulo: "Título del capítulo tres",  publicado: false, texto: `` },
+  { titulo: "Título del capítulo cuatro", publicado: false, texto: `` }
+];
+
+/* ================= A partir de aquí no hace falta tocar nada ================= */
+const ROMANOS = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"];
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+$("sinopsis").textContent = SINOPSIS;
+
+// Índice
+$("lista").innerHTML = capitulos.map((c,i) => {
+  const rom = "Capítulo " + (ROMANOS[i] || (i+1));
+  const cuerpo = `<span><span class="num">${rom}</span><h2>${esc(c.titulo)}</h2></span>`;
+  return c.publicado
+    ? `<li><a href="#cap-${i+1}">${cuerpo}<span class="estado">Leer</span></a></li>`
+    : `<li><div class="cerrado">${cuerpo}<span class="estado">Próximamente</span></div></li>`;
+}).join("");
+
+// Tamaño de letra (se recuerda en el navegador del lector)
+let tam = 1.2;
+try { tam = parseFloat(localStorage.getItem("dm-tam")) || 1.2; } catch(e){}
+function aplicarTam(){
+  tam = Math.min(1.7, Math.max(1, tam));
+  document.documentElement.style.setProperty("--tam", tam + "rem");
+  try { localStorage.setItem("dm-tam", tam); } catch(e){}
+}
+aplicarTam();
+$("mas").onclick = () => { tam += .1; aplicarTam(); };
+$("menos").onclick = () => { tam -= .1; aplicarTam(); };
+$("inicio").onclick = () => { location.hash = ""; };
+
+// Navegación por # (permite enlazar a un capítulo concreto)
+function mostrar(){
+  const m = location.hash.match(/^#cap-(\d+)$/);
+  const n = m ? parseInt(m[1],10) : 0;
+  const cap = capitulos[n-1];
+  const leyendo = cap && cap.publicado;
+
+  $("vista-inicio").classList.toggle("oculto", leyendo);
+  $("vista-lectura").classList.toggle("oculto", !leyendo);
+  $("herr").classList.toggle("oculto", !leyendo);
+  $("barra").style.width = "0";
+  window.scrollTo(0,0);
+
+  if (!leyendo) { document.title = "Dioses Modernos — La Paga del Pecado es Muerte"; return; }
+
+  document.title = cap.titulo + " · Dioses Modernos";
+  $("cap-num").textContent = "Capítulo " + (ROMANOS[n-1] || n);
+  $("cap-titulo").textContent = cap.titulo;
+  $("cap-texto").innerHTML = cap.texto.trim().split(/\n\s*\n/).map(p =>
+    p.trim() === "***" ? `<p class="escena">✦ ✦ ✦</p>` : `<p>${esc(p.trim()).replace(/\n/g,"<br>")}</p>`
+  ).join("");
+
+  const ant = n > 1 && capitulos[n-2].publicado;
+  const sig = n < capitulos.length && capitulos[n].publicado;
+  $("cap-nav").innerHTML =
+    (ant ? `<a href="#cap-${n-1}">← Capítulo anterior</a>` : `<span></span>`) +
+    `<a href="#">Índice</a>` +
+    (sig ? `<a href="#cap-${n+1}">Capítulo siguiente →</a>` : `<span>Próximamente</span>`);
+}
+window.addEventListener("hashchange", mostrar);
+mostrar();
+
+// Barra de progreso de lectura
+window.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  $("barra").style.width = max > 0 ? (h.scrollTop / max * 100) + "%" : "0";
+}, {passive:true});
+</script>
+</body>
+</html>
