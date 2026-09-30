@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-tema="oscuro" data-fuente="serif">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,131 +12,97 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --fondo:#121212; --texto:#d9d9d9; --tenue:#8a8a8a; --linea:#2a2a2a; --panel:#1c1c1c;
-    --serif:"EB Garamond",Georgia,serif; --fuente:var(--serif); --tam:1.2rem;
-  }
-  :root[data-tema="claro"]{--fondo:#ffffff;--texto:#1a1a1a;--tenue:#6b6b6b;--linea:#e3e3e3;--panel:#f6f6f6}
-  :root[data-tema="sepia"]{--fondo:#f4ecd8;--texto:#433422;--tenue:#7a6a55;--linea:#dccfb2;--panel:#ebe1c8}
-  :root[data-fuente="sans"]{--fuente:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  :root{--papel:#ffffff;--tinta:#111111;--gris:#666666;--linea:#d9d9d9}
   *{box-sizing:border-box}
   body{
-    margin:0;background:var(--fondo);color:var(--texto);font-family:var(--serif);font-size:1.1rem;line-height:1.6;
+    margin:0;background:var(--papel);color:var(--tinta);font-family:"EB Garamond",Georgia,serif;font-size:1.15rem;line-height:1.6;
     -webkit-text-size-adjust:100%;min-height:100vh;display:flex;flex-direction:column
   }
   a{color:inherit}
-  button{font:inherit}
-  :focus-visible{outline:2px solid var(--texto);outline-offset:3px}
+  :focus-visible{outline:2px solid var(--tinta);outline-offset:3px}
   .oculto{display:none!important}
-  h1,h2{font-weight:400;line-height:1.15;margin:0}
-  .barra{position:fixed;top:0;left:0;height:2px;width:0;background:var(--texto);z-index:50}
+  h1,h2{font-weight:400;margin:0}
+  .barra{position:fixed;top:0;left:0;height:2px;width:0;background:var(--tinta);z-index:50}
+  main{flex:1;width:100%}
 
-  /* Portada tipo libro */
-  .portada{max-width:36rem;margin:0 auto;padding:4rem 1.4rem 3rem;text-align:center;width:100%}
-  .libro{
-    width:min(15rem,64vw);aspect-ratio:2/3;margin:0 auto;padding:2rem 1.4rem;
-    display:flex;flex-direction:column;justify-content:space-between;align-items:center;
-    background:linear-gradient(90deg,rgba(255,255,255,.10),rgba(255,255,255,0) 7%),#1b1b1b;color:#ececec;
-    border:1px solid #333;border-radius:.2rem .5rem .5rem .2rem;box-shadow:0 14px 34px rgba(0,0,0,.35);
-    font-family:var(--serif)
-  }
-  .libro-titulo{font-size:2.3rem;line-height:1.02;margin-top:1rem}
-  .libro-sub{font-style:italic;font-size:.98rem;color:#b5b5b5;line-height:1.3}
-  .libro-autor{font-size:.95rem;color:#cfcfcf}
-  .ficha h1{font-size:1.5rem;margin-top:2rem}
-  .ficha p{margin:.3rem 0 0;color:var(--tenue)}
-  .sinopsis{font-style:italic;margin:1.8rem auto 0;max-width:27rem}
+  /* Portada: página de título */
+  .portada{max-width:36rem;margin:0 auto;padding:6rem 1.4rem 4.5rem;text-align:center}
+  .portada h1{font-size:clamp(2.7rem,10vw,4.2rem);line-height:1.1;letter-spacing:.01em}
+  .portada .sub{font-style:italic;font-size:clamp(1.2rem,4.6vw,1.5rem);margin:1rem 0 0}
+  .regla{width:3rem;border-top:1px solid var(--tinta);margin:2.2rem auto}
+  .portada .autor{font-size:1.25rem;margin:0}
+  .portada .genero{color:var(--gris);font-style:italic;margin:.4rem 0 0;font-size:1.05rem}
   .boton{
-    display:inline-block;margin-top:2rem;padding:.8rem 2.2rem;background:var(--texto);color:var(--fondo);
-    text-decoration:none;border-radius:2rem;font-size:1.05rem
+    display:inline-block;margin-top:2.6rem;padding:.8rem 2.2rem;background:var(--tinta);color:var(--papel);
+    text-decoration:none;border:1px solid var(--tinta);font-size:1.1rem
   }
-  .boton:hover{opacity:.85}
-  .contenido{max-width:36rem;margin:0 auto;width:100%;padding:1rem 1.4rem 4rem}
-  .contenido h2.seccion{font-size:1.3rem;font-style:italic;color:var(--tenue);padding-bottom:.8rem;border-bottom:1px solid var(--linea)}
-  .lista{list-style:none;padding:0;margin:0}
+  .boton:hover{background:var(--papel);color:var(--tinta)}
+
+  /* Contenido */
+  .contenido{max-width:36rem;margin:0 auto;width:100%;padding:0 1.4rem 5rem}
+  .contenido h2.seccion{font-size:1.6rem;font-style:italic;text-align:center;padding-bottom:1.2rem}
+  .lista{list-style:none;padding:0;margin:0;border-top:1px solid var(--tinta)}
   .lista li{border-bottom:1px solid var(--linea)}
-  .lista a,.lista .cerrado{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;text-decoration:none}
+  .lista a,.lista .cerrado{display:flex;align-items:baseline;gap:.5rem;padding:1rem .2rem;text-decoration:none}
+  .lista .n{width:2.4rem;flex:none;font-style:italic;color:var(--gris)}
+  .lista h2{font-size:1.3rem;line-height:1.2}
+  .lista .punto{flex:1;min-width:1rem;border-bottom:1px dotted var(--gris);transform:translateY(-.3em)}
+  .lista .m{color:var(--gris);font-size:.95rem;white-space:nowrap}
   .lista a:hover h2{text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
-  .lista h2{font-size:1.3rem}
-  .lista .num{color:var(--tenue);font-style:italic;font-size:.95rem;display:block;margin-bottom:.1rem}
-  .lista .estado{color:var(--tenue);font-size:.95rem;white-space:nowrap}
-  .lista .cerrado{opacity:.5}
-  footer{margin-top:auto;text-align:center;color:var(--tenue);font-size:.9rem;padding:1.6rem 1.2rem}
+  .lista .cerrado{opacity:.45}
+  footer{border-top:1px solid var(--linea);text-align:center;color:var(--gris);font-size:.92rem;padding:1.4rem 1.2rem}
 
-  /* Barras del lector */
-  .top,.pie{
-    position:fixed;left:0;right:0;z-index:20;background:var(--fondo);display:none;align-items:center;
-    justify-content:space-between;gap:1rem;padding:.6rem 1.1rem;transition:transform .25s,opacity .25s
+  /* Cabecera de lectura */
+  .top{
+    position:sticky;top:0;z-index:20;background:var(--papel);border-bottom:1px solid var(--linea);display:none;
+    align-items:baseline;justify-content:space-between;gap:1rem;padding:.75rem max(1.4rem,calc((100% - 38rem)/2))
   }
-  .top{top:0;border-bottom:1px solid var(--linea)}
-  .pie{bottom:0;border-top:1px solid var(--linea);color:var(--tenue);font-size:.95rem;padding-bottom:calc(.6rem + env(safe-area-inset-bottom,0px))}
-  body.leyendo .top,body.leyendo .pie{display:flex}
-  body.sin-chrome .top{transform:translateY(-100%);opacity:0}
-  body.sin-chrome .pie{transform:translateY(100%);opacity:0}
-  .top a,.top button{color:var(--tenue);background:none;border:0;cursor:pointer;text-decoration:none;font-size:1rem;padding:.4rem .2rem}
-  .top a:hover,.top button:hover{color:var(--texto)}
-  .top .libro-nom{color:var(--tenue);font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .top .aa{font-family:var(--serif);font-size:1.25rem}
+  body.leyendo .top{display:flex}
+  .top a{font-style:italic;font-size:1.15rem;text-decoration:none}
+  .top a:hover{text-decoration:underline}
+  .top span{color:var(--gris);font-size:.98rem}
 
-  /* Lectura */
-  .lectura{max-width:34rem;margin:0 auto;padding:6.5rem 1.5rem 7rem;width:100%}
-  .cap-cab{text-align:center;margin:0 0 3rem}
-  .cap-cab .num{color:var(--tenue);font-style:italic;font-size:1.05rem}
-  .cap-cab h2{font-size:clamp(2rem,8vw,2.7rem);margin-top:.4rem}
-  .cap-cab .meta{color:var(--tenue);font-size:.95rem;margin-top:.8rem}
-  .texto{font-family:var(--fuente);font-size:var(--tam);line-height:1.7}
-  .texto p{margin:0;text-indent:1.4em;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  /* Lectura: como una novela impresa */
+  .lectura{max-width:36rem;margin:0 auto;padding:4rem 1.4rem 4.5rem;width:100%}
+  .apertura{text-align:center;margin:0 0 3rem}
+  .apertura .numeral{font-style:italic;color:var(--gris);font-size:1.15rem}
+  .apertura h2{font-size:clamp(2.1rem,8vw,3rem);line-height:1.1;margin-top:.5rem}
+  .apertura .meta{color:var(--gris);font-size:.98rem;margin-top:.9rem}
+  .apertura::after{content:"";display:block;width:3rem;border-top:1px solid var(--tinta);margin:1.8rem auto 0}
+  .texto{font-size:1.25rem;line-height:1.65}
+  .texto p{margin:0;text-indent:1.5em;text-align:left;hyphens:auto;-webkit-hyphens:auto}
+  @media (min-width:700px){.texto p{text-align:justify}}
   .texto p:first-child,.texto .escena+p{text-indent:0}
-  .texto .escena{text-indent:0;text-align:center;color:var(--tenue);letter-spacing:.5em;margin:1.6em 0}
-  .nav{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--linea)}
-  .nav a{text-decoration:none;font-size:1rem;border:1px solid var(--linea);border-radius:2rem;padding:.6rem 1.1rem}
-  .nav a:hover{border-color:var(--texto)}
-  .nav span{color:var(--tenue);font-size:1rem}
-
-  /* Ajustes */
-  .velo{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:30}
-  .hoja{
-    position:fixed;left:0;right:0;bottom:0;max-width:34rem;margin:0 auto;z-index:40;background:var(--panel);
-    border:1px solid var(--linea);border-bottom:0;border-radius:.9rem .9rem 0 0;padding:1.3rem 1.4rem calc(1.6rem + env(safe-area-inset-bottom,0px));
-    display:grid;gap:1.1rem
-  }
-  .hoja .fila{display:flex;align-items:center;gap:.6rem}
-  .hoja .fila button{
-    flex:1;color:var(--texto);background:transparent;border:1px solid var(--linea);border-radius:.5rem;padding:.65rem;cursor:pointer
-  }
-  .hoja .fila button[aria-pressed="true"]{outline:2px solid var(--texto);outline-offset:1px}
-  .hoja .t-claro{background:#fff!important;color:#1a1a1a!important}
-  .hoja .t-sepia{background:#f4ecd8!important;color:#433422!important}
-  .hoja .t-oscuro{background:#121212!important;color:#d9d9d9!important}
-  .hoja .f-sans{font-family:system-ui,sans-serif}
-  .hoja input[type=range]{flex:1;accent-color:var(--texto)}
+  .texto p:first-child::first-letter{float:left;font-size:3.6em;line-height:.8;padding:.08em .1em 0 0}
+  .texto .escena{text-indent:0;text-align:center;letter-spacing:.5em;margin:1.6em 0;color:var(--gris)}
+  .nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3.5rem;border-top:1px solid var(--tinta)}
+  .nav a,.nav .prox{display:block;padding:1.2rem 0;text-decoration:none}
+  .nav .sig,.nav .prox{text-align:right;grid-column:2}
+  .nav .ant{grid-column:1}
+  .nav .et{display:block;color:var(--gris);font-size:.95rem;font-style:italic}
+  .nav strong{font-weight:400;font-size:1.25rem;line-height:1.2}
+  .nav a:hover strong{text-decoration:underline}
+  .nav .prox{color:var(--gris);font-style:italic}
 </style>
 </head>
 <body>
 <div class="barra" id="barra"></div>
 
 <header class="top">
-  <a id="inicio" href="#">‹ Índice</a>
-  <span class="libro-nom">Dioses Modernos</span>
-  <button class="aa" id="ajustes" aria-label="Ajustes de lectura">Aa</button>
+  <a id="inicio" href="#">Dioses Modernos</a>
+  <span id="top-meta"></span>
 </header>
 
 <main>
   <!-- PORTADA -->
   <section id="vista-inicio">
     <div class="portada">
-      <div class="libro" aria-hidden="true">
-        <span class="libro-titulo">Dioses<br>Modernos</span>
-        <span class="libro-sub">La Paga del Pecado es Muerte</span>
-        <span class="libro-autor">Luis Tangarife</span>
-      </div>
-      <div class="ficha">
-        <h1>Dioses Modernos</h1>
-        <p>Luis Tangarife</p>
-        <p>Novela de fantasía oscura, publicada por entregas</p>
-      </div>
-      <p class="sinopsis" id="sinopsis"></p>
-      <a class="boton" id="continuar" href="#prologo">Empezar a leer</a>
+      <h1>Dioses Modernos</h1>
+      <p class="sub">La Paga del Pecado es Muerte</p>
+      <div class="regla"></div>
+      <p class="autor">Luis Tangarife</p>
+      <p class="genero">Novela de fantasía oscura, publicada por entregas</p>
+      <a class="boton" id="empezar" href="#prologo">Empezar a leer</a>
     </div>
     <div class="contenido">
       <h2 class="seccion">Contenido</h2>
@@ -147,8 +113,8 @@
 
   <!-- LECTURA -->
   <article id="vista-lectura" class="lectura oculto">
-    <header class="cap-cab">
-      <div class="num" id="cap-num"></div>
+    <header class="apertura">
+      <div class="numeral" id="cap-num"></div>
       <h2 id="cap-titulo"></h2>
       <div class="meta" id="cap-meta"></div>
     </header>
@@ -156,22 +122,6 @@
     <nav class="nav" id="cap-nav"></nav>
   </article>
 </main>
-
-<div class="pie"><span id="pie-cap"></span><span id="pie-pct">0 %</span></div>
-
-<div class="velo oculto" id="velo"></div>
-<div class="hoja oculto" id="hoja" role="dialog" aria-label="Ajustes de lectura">
-  <div class="fila">
-    <button class="t-claro" data-t="claro">Blanco</button>
-    <button class="t-sepia" data-t="sepia">Sepia</button>
-    <button class="t-oscuro" data-t="oscuro">Oscuro</button>
-  </div>
-  <div class="fila"><span style="font-size:.9rem">A</span><input type="range" id="tam" min="1" max="1.7" step="0.05" aria-label="Tamaño de letra"><span style="font-size:1.4rem">A</span></div>
-  <div class="fila">
-    <button data-f="serif" style="font-family:var(--serif)">Con serifa</button>
-    <button data-f="sans" class="f-sans">Sin serifa</button>
-  </div>
-</div>
 
 <script>
 /* =====================================================
@@ -182,8 +132,6 @@
    - Cuando un capítulo esté listo, pon publicado: true.
    - El prólogo no cuenta como capítulo: los capítulos se numeran solos.
    ===================================================== */
-const SINOPSIS = "Toda puerta conduce a una verdad, y las más antiguas nunca fueron ocultadas por estar equivocadas.";
-
 const capitulos = [
   {
     id: "prologo",
@@ -278,69 +226,21 @@ const $ = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 const minutos = c => Math.max(1, Math.round(c.texto.trim().split(/\s+/).length / 200));
 const raiz = document.documentElement;
-const guardar = (k,v) => { try { localStorage.setItem(k,v); } catch(e){} };
-const leer = k => { try { return localStorage.getItem(k); } catch(e){ return null; } };
 
 // Numera solo los capítulos (el prólogo queda aparte)
 let n = 0;
 capitulos.forEach(c => {
-  if (c.sinNumero) { c.rotulo = ""; }
-  else { n++; c.rotulo = "Capítulo " + (ROMANOS[n-1] || n); c.id = c.id || "cap-" + n; }
+  if (c.sinNumero) { c.numeral = ""; c.rotulo = c.titulo; }
+  else { n++; c.numeral = ROMANOS[n-1] || String(n); c.rotulo = "Capítulo " + c.numeral; c.id = c.id || "cap-" + n; }
 });
 
-$("sinopsis").textContent = SINOPSIS;
+const primero = capitulos.find(c => c.publicado);
+if (primero) $("empezar").href = "#" + primero.id;
+
 $("lista").innerHTML = capitulos.map(c => {
-  const num = c.rotulo ? `<span class="num">${c.rotulo}</span>` : "";
-  const cuerpo = `<span>${num}<h2>${esc(c.titulo)}</h2></span>`;
-  return c.publicado
-    ? `<li><a href="#${c.id}">${cuerpo}<span class="estado">${minutos(c)} min</span></a></li>`
-    : `<li><div class="cerrado">${cuerpo}<span class="estado">Próximamente</span></div></li>`;
+  const cuerpo = `<span class="n">${c.numeral ? c.numeral + "." : ""}</span><h2>${esc(c.titulo)}</h2><span class="punto"></span><span class="m">${c.publicado ? minutos(c) + " min" : "Próximamente"}</span>`;
+  return c.publicado ? `<li><a href="#${c.id}">${cuerpo}</a></li>` : `<li><div class="cerrado">${cuerpo}</div></li>`;
 }).join("");
-
-// ---------- Ajustes de lectura (se recuerdan en el navegador del lector) ----------
-function marcar(){
-  document.querySelectorAll("#hoja button").forEach(b => {
-    b.setAttribute("aria-pressed", String(b.dataset.t === raiz.dataset.tema || b.dataset.f === raiz.dataset.fuente));
-  });
-}
-function ponerTema(t){ raiz.dataset.tema = t; guardar("dm-tema", t); marcar(); }
-function ponerFuente(f){ raiz.dataset.fuente = f; guardar("dm-fuente", f); marcar(); }
-function ponerTam(v){
-  v = Math.min(1.7, Math.max(1, parseFloat(v) || 1.2));
-  raiz.style.setProperty("--tam", v + "rem"); $("tam").value = v; guardar("dm-tam", v);
-}
-const tSaved = leer("dm-tema"), fSaved = leer("dm-fuente");
-ponerTema(["claro","sepia","oscuro"].includes(tSaved) ? tSaved : "oscuro");
-ponerFuente(fSaved === "sans" ? "sans" : "serif");
-ponerTam(leer("dm-tam") || 1.2);
-document.querySelectorAll("#hoja button").forEach(b => {
-  b.onclick = () => b.dataset.t ? ponerTema(b.dataset.t) : ponerFuente(b.dataset.f);
-});
-$("tam").oninput = e => ponerTam(e.target.value);
-const abrirHoja = v => { $("hoja").classList.toggle("oculto", !v); $("velo").classList.toggle("oculto", !v); };
-$("ajustes").onclick = () => abrirHoja($("hoja").classList.contains("oculto"));
-$("velo").onclick = () => abrirHoja(false);
-
-// ---------- Lector ----------
-const POS = "dm-pos";
-let actualId = null, ultimoY = 0, timer;
-const actual = () => capitulos.find(c => c.id === actualId);
-const progreso = () => { const m = raiz.scrollHeight - raiz.clientHeight; return m > 0 ? Math.min(1, raiz.scrollTop / m) : 0; };
-const chrome = v => document.body.classList.toggle("sin-chrome", !v);
-function pintarProgreso(){
-  const p = progreso();
-  $("barra").style.width = (p * 100) + "%";
-  $("pie-pct").textContent = Math.round(p * 100) + " %";
-}
-function posGuardada(){ try { return JSON.parse(leer(POS) || "null"); } catch(e){ return null; } }
-function pintarContinuar(){
-  const pos = posGuardada();
-  const c = pos && capitulos.find(x => x.id === pos.id && x.publicado);
-  const b = $("continuar");
-  if (c && pos.r > 0.02) { b.textContent = "Continuar leyendo"; b.href = "#" + c.id; }
-  else { const p = capitulos.find(x => x.publicado); b.textContent = "Empezar a leer"; b.href = "#" + (p ? p.id : ""); }
-}
-const arriba = y => window.scrollTo({ top: y, behavior: "instant" });
 
 function mostrar(){
   const i = capitulos.findIndex(c => c.id === location.hash.slice(1));
@@ -350,52 +250,36 @@ function mostrar(){
   document.body.classList.toggle("leyendo", leyendo);
   $("vista-inicio").classList.toggle("oculto", leyendo);
   $("vista-lectura").classList.toggle("oculto", !leyendo);
-  abrirHoja(false); chrome(true); arriba(0); ultimoY = 0;
   $("barra").style.width = "0";
+  window.scrollTo({ top: 0, behavior: "instant" });
 
-  if (!leyendo) {
-    actualId = null; document.title = "Dioses Modernos — La Paga del Pecado es Muerte"; pintarContinuar(); return;
-  }
-  actualId = cap.id;
+  if (!leyendo) { document.title = "Dioses Modernos — La Paga del Pecado es Muerte"; return; }
+
   document.title = cap.titulo + " · Dioses Modernos";
-  $("cap-num").textContent = cap.rotulo;
-  $("cap-num").classList.toggle("oculto", !cap.rotulo);
+  $("top-meta").textContent = cap.rotulo;
+  $("cap-num").textContent = cap.numeral ? cap.rotulo : "";
+  $("cap-num").classList.toggle("oculto", !cap.numeral);
   $("cap-titulo").textContent = cap.titulo;
   $("cap-meta").textContent = minutos(cap) + " min de lectura";
-  $("pie-cap").textContent = cap.rotulo || cap.titulo;
   $("cap-texto").innerHTML = cap.texto.trim().split(/\n\s*\n/).map(p =>
     p.trim() === "***" ? `<p class="escena">* * *</p>` : `<p>${esc(p.trim()).replace(/\n/g,"<br>")}</p>`
   ).join("");
 
-  const ant = i > 0 && capitulos[i-1].publicado;
-  const sig = i < capitulos.length - 1 && capitulos[i+1].publicado;
+  const ant = i > 0 && capitulos[i-1].publicado ? capitulos[i-1] : null;
+  const sig = i < capitulos.length - 1 && capitulos[i+1].publicado ? capitulos[i+1] : null;
   $("cap-nav").innerHTML =
-    (ant ? `<a href="#${capitulos[i-1].id}">← Anterior</a>` : `<span></span>`) +
-    `<a href="#">Índice</a>` +
-    (sig ? `<a href="#${capitulos[i+1].id}">Siguiente →</a>` : `<span>Próximamente</span>`);
-
-  const pos = posGuardada();
-  if (pos && pos.id === cap.id && pos.r > 0.01) {
-    requestAnimationFrame(() => arriba(pos.r * (raiz.scrollHeight - raiz.clientHeight)));
-  }
-  pintarProgreso();
+    (ant ? `<a class="ant" href="#${ant.id}"><span class="et">Anterior</span><strong>${esc(ant.titulo)}</strong></a>` : "") +
+    (sig ? `<a class="sig" href="#${sig.id}"><span class="et">Siguiente</span><strong>${esc(sig.titulo)}</strong></a>`
+         : `<span class="prox">Próximamente</span>`);
 }
 window.addEventListener("hashchange", mostrar);
 mostrar();
 
-// Al bajar se ocultan las barras, al subir reaparecen; tocar el texto también las alterna
+// Barra de progreso de lectura
 window.addEventListener("scroll", () => {
-  if (!actualId) return;
-  const y = raiz.scrollTop;
-  pintarProgreso();
-  if (Math.abs(y - ultimoY) > 10) { chrome(y < ultimoY || y < 80); ultimoY = y; }
-  clearTimeout(timer);
-  timer = setTimeout(() => guardar(POS, JSON.stringify({ id: actualId, r: progreso() })), 400);
+  const m = raiz.scrollHeight - raiz.clientHeight;
+  $("barra").style.width = m > 0 ? (raiz.scrollTop / m * 100) + "%" : "0";
 }, { passive: true });
-$("cap-texto").addEventListener("click", () => {
-  if (String(window.getSelection()).length) return;
-  chrome(document.body.classList.contains("sin-chrome"));
-});
 </script>
 </body>
 </html>
