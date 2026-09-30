@@ -109,27 +109,99 @@
 <script>
 /* =====================================================
    AQUÍ EDITAS TU CONTENIDO
-   - Cada capítulo es un bloque { titulo, publicado, texto }.
+   - Cada entrada es un bloque { titulo, publicado, texto }.
    - Deja una línea en blanco entre párrafos.
    - Escribe *** en una línea sola para un cambio de escena.
    - Cuando un capítulo esté listo, pon publicado: true.
+   - El prólogo no cuenta como capítulo: los capítulos se numeran solos.
    ===================================================== */
-const SINOPSIS = "Escribe aquí una o dos frases que inviten a leer, sin revelar demasiado.";
+const SINOPSIS = "Toda puerta conduce a una verdad, y las más antiguas nunca fueron ocultadas por estar equivocadas.";
 
 const capitulos = [
   {
-    titulo: "Título del capítulo uno",
+    id: "prologo",
+    sinNumero: true,
+    titulo: "Prólogo",
     publicado: true,
-    texto: `Pega aquí el primer párrafo de tu capítulo.
+    texto: `Cualquiera que empiece a leer este libro podría pensar que se trata de guerras entre dioses, fantasías épicas, seres sobrenaturales y tramas mejoradas respecto a lo que ya se ha contado antes. Y tal vez lo sea, pero tal vez no.
 
-Este es el segundo párrafo. Deja siempre una línea en blanco entre uno y otro.
+La verdad es que yo, quien escribe estas líneas, no sabe realmente de qué trata esta historia. Todo parece girar sin aviso, como un péndulo que no encuentra su centro. A cada página creo entender su propósito... hasta que todo se desvanece en sombras más densas. ¿Me equivoco? ¿O simplemente soy otro iluso que se aferra a lo poco que cree saber?
+
+No soy un escritor. Ni un héroe. Ni un narrador confiable.
+
+Solo soy un sobreviviente.
+
+Alguien que escribe para no desaparecer. Que se aferra a las palabras como si fueran cuchillas o refugio. ¿Es egoísta soñar con dejar una huella? ¿Es necio pensar que hay sentido en este caos?
+
+Mírate. ¿Realmente crees que esto lo escribes tú? Qué patético intento de control...
+
+Sigue fingiendo que eres el autor. Mientras yo te observo desde las sombras. Esperando.
+
+Quizá este no sea un libro. Quizá sea un espejo. Uno que deforma. Que grita. Uno que, página tras página, revelará no solo una historia, sino fragmentos del lector.
+
+Fragmentos de ti.
+
+Y de mí.
+
+Así que dime: ¿estás listo para perderte entre los huecos de esta narrativa? ¿Para mirar hacia dentro y no saber quién está mirando de vuelta? ¿Estás dispuesto a cruzar la puerta, sabiendo que no todos regresan con la misma forma… ni con la misma alma?
+
+Porque toda puerta conduce a una verdad, y las verdades más antiguas nunca fueron ocultadas por estar equivocadas, sino por ser demasiado peligrosas para quienes se atrevieran a contemplarlas. Esta es una de ellas, no habla de héroes, no habla de elegidos, ni pretende defender aquello en lo que has aprendido a creer. Habla de dioses y de un pecado tan antiguo que incluso los propios dioses aprendieron a temer su nombre.
 
 ***
 
-Y así puedes marcar un cambio de escena.`
+Todo el mundo cree que el mayor pecado fue desafiar a Dios. Se equivocan, el verdadero pecado fue descubrir que nunca hubo uno solo.
+
+Desde tiempos inmemoriales —grabados como heridas en el pergamino del universo—, los hombres han erguido altares, han doblado rodillas, han pronunciado nombres que ya no recuerdan. Y en cada uno de esos gestos, se ha abierto una grieta. Porque la devoción a lo que no comprendemos también es una forma de esclavitud.
+
+Los antiguos textos, aquellos que solo se murmuran en lenguas muertas, afirman que adorar a más de un ser supremo fue, y sigue siendo, un pecado. Un acto condenado. Una afrenta a la ley sagrada. Tal como lo advierte cierto libro que muchos cargan pero pocos entienden:
+
+"La paga del pecado es la muerte."
+
+¿Estás de acuerdo? ¿O quizás eres un pecador?.
+
+Depende de la historia que te hayan contado.
+
+No respondas todavía
+
+Ahora ven conmigo, voy a mostrarte por qué te hice esa pregunta. Porque mucho antes de que existieran templos, profetas o mandamientos, ya habían dioses... y ya existía el pecado.
+
+En el rincón del ayer —donde las eras no son tiempo sino ceniza— reposan los fragmentos de lo que una vez fue divino. Los recuerdos de los dioses, o de aquello que alguna vez llamamos así. Seres supremos. Olvidados. Descompuestos en mito.
+
+Pero ¿y si te dijera que lo mitológico fue real? ¿Y que, en las grietas de esta realidad, aún respira?. Puede sonar ilógico, absurdo incluso desquiciado, pero la locura, como la fe, es cuestión de perspectiva.
+
+Esta historia no sigue las reglas que conoces. No obedece los mapas del héroe, ni la línea recta del bien y el mal. Porque aquí no hubo creación. Hubo conquista. La humanidad no fue hecha a imagen de los dioses. Fue encadenada por ellos, Lo curioso es que todavía les llaman salvadores.
+
+Los humanos tenían el potencial de convertirse en algo más. Mucho más. Pero eso no convenía. Aún no revelaré todo: no sería justo, ni divertido.
+
+No tengas prisa, llegaremos ahí; los dioses llevan milenios esperando, tú puedes esperar unas páginas. Prefiero llevarte lentamente, desnudarte de certezas, hasta que estés listo para ver.
+
+Todo comenzó en el alba del tiempo. O, mejor dicho, en su sombra. En el lugar donde el "nada" se convertía en "todo" y el "todo" se disolvía en el abismo de lo que aún no era. La existencia misma yacía suspendida, flotando en un vacío que ni siquiera sabía que estaba solo.
+
+Y entonces algo ardió. Una chispa. Un instante de furia cósmica que prendió la Llama de la Creación.
+
+A eso lo llamaron Eón.
+
+El primer aliento del caos. El Ígneo.
+
+Aquello que era materia se volvió etéreo, lo invisible adoptó formas, y las formas reclamaron poder con la urgencia de algo que lleva demasiado tiempo esperando existir. Portales intercósmicos se desgarraron en la trama del universo, permitiendo que sustancias impensables cruzaran hacia nuevos planos.
+
+Y entonces surgieron ellos. Los que tú conoces por nombres limitados: Deidades Supremas, Dioses, Humanos, Ángeles, Demonios, Bestias... y el Ígneo. Cada uno brotó de un plano único, teñido con su propia esencia, cargado de su propio horror.
+
+Pero algunos no se conformaron con lo que eran. Querían más.
+
+Todo.
+
+Y así comenzó la ruptura. La traición. La guerra. Los Cielos se abrieron en fuego…
+
+La Guerra Ígnea comenzó.
+
+Y todos ellos —en busca del Ígneo— avanzaron. No para adorarlo, sino para devorarlo. Para alcanzar algo que solo puede describirse con un susurro:
+
+el Nirvana.`
   },
-  { titulo: "Título del capítulo dos",   publicado: false, texto: `` },
-  { titulo: "Título del capítulo tres",  publicado: false, texto: `` },
+  { titulo: "Título del capítulo uno",    publicado: false, texto: `` },
+  { titulo: "Título del capítulo dos",    publicado: false, texto: `` },
+  { titulo: "Título del capítulo tres",   publicado: false, texto: `` },
   { titulo: "Título del capítulo cuatro", publicado: false, texto: `` }
 ];
 
@@ -138,14 +210,21 @@ const ROMANOS = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 
+// Numera solo los capítulos (el prólogo queda aparte)
+let n = 0;
+capitulos.forEach(c => {
+  if (c.sinNumero) { c.rotulo = ""; }
+  else { n++; c.rotulo = "Capítulo " + (ROMANOS[n-1] || n); c.id = c.id || "cap-" + n; }
+});
+
 $("sinopsis").textContent = SINOPSIS;
 
 // Índice
-$("lista").innerHTML = capitulos.map((c,i) => {
-  const rom = "Capítulo " + (ROMANOS[i] || (i+1));
-  const cuerpo = `<span><span class="num">${rom}</span><h2>${esc(c.titulo)}</h2></span>`;
+$("lista").innerHTML = capitulos.map(c => {
+  const num = c.rotulo ? `<span class="num">${c.rotulo}</span>` : "";
+  const cuerpo = `<span>${num}<h2>${esc(c.titulo)}</h2></span>`;
   return c.publicado
-    ? `<li><a href="#cap-${i+1}">${cuerpo}<span class="estado">Leer</span></a></li>`
+    ? `<li><a href="#${c.id}">${cuerpo}<span class="estado">Leer</span></a></li>`
     : `<li><div class="cerrado">${cuerpo}<span class="estado">Próximamente</span></div></li>`;
 }).join("");
 
@@ -162,12 +241,12 @@ $("mas").onclick = () => { tam += .1; aplicarTam(); };
 $("menos").onclick = () => { tam -= .1; aplicarTam(); };
 $("inicio").onclick = () => { location.hash = ""; };
 
-// Navegación por # (permite enlazar a un capítulo concreto)
+// Navegación por # (permite enlazar a una entrega concreta: #prologo, #cap-1...)
 function mostrar(){
-  const m = location.hash.match(/^#cap-(\d+)$/);
-  const n = m ? parseInt(m[1],10) : 0;
-  const cap = capitulos[n-1];
-  const leyendo = cap && cap.publicado;
+  const id = location.hash.slice(1);
+  const i = capitulos.findIndex(c => c.id === id);
+  const cap = capitulos[i];
+  const leyendo = !!cap && cap.publicado;
 
   $("vista-inicio").classList.toggle("oculto", leyendo);
   $("vista-lectura").classList.toggle("oculto", !leyendo);
@@ -178,18 +257,19 @@ function mostrar(){
   if (!leyendo) { document.title = "Dioses Modernos — La Paga del Pecado es Muerte"; return; }
 
   document.title = cap.titulo + " · Dioses Modernos";
-  $("cap-num").textContent = "Capítulo " + (ROMANOS[n-1] || n);
+  $("cap-num").textContent = cap.rotulo;
+  $("cap-num").classList.toggle("oculto", !cap.rotulo);
   $("cap-titulo").textContent = cap.titulo;
   $("cap-texto").innerHTML = cap.texto.trim().split(/\n\s*\n/).map(p =>
     p.trim() === "***" ? `<p class="escena">✦ ✦ ✦</p>` : `<p>${esc(p.trim()).replace(/\n/g,"<br>")}</p>`
   ).join("");
 
-  const ant = n > 1 && capitulos[n-2].publicado;
-  const sig = n < capitulos.length && capitulos[n].publicado;
+  const ant = i > 0 && capitulos[i-1].publicado;
+  const sig = i < capitulos.length - 1 && capitulos[i+1].publicado;
   $("cap-nav").innerHTML =
-    (ant ? `<a href="#cap-${n-1}">← Capítulo anterior</a>` : `<span></span>`) +
+    (ant ? `<a href="#${capitulos[i-1].id}">← Anterior</a>` : `<span></span>`) +
     `<a href="#">Índice</a>` +
-    (sig ? `<a href="#cap-${n+1}">Capítulo siguiente →</a>` : `<span>Próximamente</span>`);
+    (sig ? `<a href="#${capitulos[i+1].id}">Siguiente →</a>` : `<span>Próximamente</span>`);
 }
 window.addEventListener("hashchange", mostrar);
 mostrar();
