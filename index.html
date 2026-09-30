@@ -32,7 +32,6 @@
   :focus-visible{outline:2px solid var(--laton);outline-offset:3px}
   .oculto{display:none!important}
   h1,h2{font-family:"IM Fell English","EB Garamond",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
-
   .barra{position:fixed;top:0;left:0;height:3px;width:0;background:var(--sangre);z-index:30}
 
   /* Cabecera */
@@ -48,61 +47,86 @@
     border:1px solid var(--linea);border-radius:.35rem;padding:.5rem .7rem;cursor:pointer;min-width:2.4rem
   }
   .herr button:hover{border-color:var(--laton);color:var(--laton)}
-
   main{flex:1;width:100%}
-  .envoltura{max-width:42rem;margin:0 auto;padding:0 1.4rem}
 
-  /* Portada */
-  .hero{text-align:center;padding:3.5rem 1.4rem 3.2rem;max-width:42rem;margin:0 auto}
-  .emblema{width:7.5rem;height:7.5rem;color:var(--laton);margin:0 auto 1.6rem;display:block}
-  .hero h1{font-size:clamp(2.8rem,12vw,4.6rem);letter-spacing:.005em}
-  .hero .sub{font-family:"IM Fell English",Georgia,serif;font-style:italic;color:var(--laton);font-size:clamp(1.15rem,4.5vw,1.5rem);margin:.8rem 0 0}
-  .hero .genero{color:var(--tenue);margin:1.8rem 0 0;font-size:1rem}
-  .hero .sinopsis{font-style:italic;font-size:1.2rem;line-height:1.55;margin:1.4rem auto 0;max-width:30rem}
+  /* Portada editorial */
+  .hero{max-width:60rem;margin:0 auto;padding:1.6rem 1.4rem 3.4rem}
+  .mastil{
+    display:flex;justify-content:space-between;gap:.4rem 1.5rem;flex-wrap:wrap;
+    border-top:4px double var(--laton);border-bottom:1px solid var(--linea);padding:.6rem 0;
+    font-variant-caps:small-caps;letter-spacing:.07em;color:var(--tenue);font-size:1.05rem
+  }
+  .portada{display:grid;gap:2.4rem;padding-top:2.4rem;grid-template-areas:"marco" "texto"}
+  .marco{grid-area:marco;border:3px double var(--linea);padding:1.2rem;width:fit-content}
+  .emblema{display:block;width:6.5rem;height:6.5rem;color:var(--laton)}
+  .portada-texto{grid-area:texto}
+  .portada-texto h1{font-size:clamp(3.4rem,15vw,6.8rem);line-height:.95;letter-spacing:-.005em}
+  .portada-texto .sub{font-family:"IM Fell English",Georgia,serif;font-style:italic;color:var(--laton);font-size:clamp(1.25rem,4.6vw,1.65rem);margin:1.1rem 0 0}
+  .regla{width:4rem;border-top:2px solid var(--sangre);margin:1.8rem 0}
+  .sinopsis{font-style:italic;font-size:1.25rem;line-height:1.55;margin:0;max-width:30rem;border-left:2px solid var(--laton);padding-left:1.1rem}
+  .acciones{display:flex;align-items:center;flex-wrap:wrap;gap:1rem 1.6rem;margin-top:2.2rem}
   .boton{
-    display:inline-block;margin-top:2.2rem;padding:.85rem 2rem;background:var(--sangre);color:var(--boton-texto);
+    display:inline-block;padding:.85rem 2rem;background:var(--sangre);color:var(--boton-texto);
     text-decoration:none;font-size:1.1rem;border-radius:.3rem;border:1px solid var(--sangre)
   }
   .boton:hover{background:transparent;color:var(--sangre)}
   :root[data-tema="oscuro"] .boton:hover{color:var(--texto);border-color:var(--laton)}
-  .hero .autor{color:var(--tenue);margin:1.6rem 0 0;font-size:1rem}
+  .byline{color:var(--tenue);font-style:italic}
+  @media (min-width:820px){
+    .portada{grid-template-columns:1.35fr 1fr;grid-template-areas:"texto marco";align-items:center;gap:3.5rem;padding-top:3.6rem}
+    .marco{justify-self:center;padding:2rem;width:auto}
+    .emblema{width:min(100%,17rem);height:auto}
+  }
 
   /* Contenido */
-  .contenido{padding-bottom:4rem}
-  .contenido h2.seccion{font-size:1.7rem;padding-bottom:.9rem;border-bottom:2px solid var(--laton)}
-  .lista{list-style:none;padding:0;margin:0}
+  .contenido{max-width:60rem;margin:0 auto;width:100%;padding:0 1.4rem 4.5rem;display:grid;gap:1.4rem}
+  .contenido h2.seccion{font-size:2rem;font-style:italic;padding-top:1rem;border-top:1px solid var(--linea)}
+  @media (min-width:820px){.contenido{grid-template-columns:1fr 2fr;gap:3.5rem}}
+  .lista{list-style:none;padding:0;margin:0;border-top:1px solid var(--linea)}
   .lista li{border-bottom:1px solid var(--linea)}
-  .lista a,.lista .cerrado{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem .3rem;text-decoration:none}
+  .lista a,.lista .cerrado{display:flex;align-items:flex-end;gap:.7rem;padding:1.1rem .3rem;text-decoration:none}
+  .lista a::before,.lista .cerrado::before{content:"";order:1;flex:1;border-bottom:1px dotted var(--tenue);margin-bottom:.45rem;opacity:.6;min-width:1rem}
+  .lista a>span:first-child,.lista .cerrado>span:first-child{order:0}
+  .lista .estado{order:2}
   .lista a:hover{background:var(--superficie)}
   .lista a:hover h2{color:var(--laton)}
-  .lista h2{font-size:1.4rem}
-  .lista .num{color:var(--tenue);font-size:.95rem;display:block;margin-bottom:.2rem}
-  .lista .estado{color:var(--tenue);font-size:.95rem;white-space:nowrap}
+  .lista h2{font-size:1.45rem}
+  .lista .num{color:var(--tenue);font-style:italic;font-size:.98rem;display:block;margin-bottom:.15rem}
+  .lista .estado{color:var(--tenue);font-size:.95rem;white-space:nowrap;margin-bottom:.15rem}
   .lista a .estado{color:var(--laton)}
   .lista .cerrado{opacity:.55}
 
   /* Lectura */
   .lectura{max-width:40rem;margin:0 auto;padding:3.2rem 1.4rem 4rem}
-  .cap-cab{text-align:center;margin:0 0 2.6rem}
-  .cap-cab .num{color:var(--laton);font-family:"IM Fell English",serif;font-style:italic;font-size:1.15rem}
-  .cap-cab h2{font-size:clamp(2.1rem,8vw,3rem);margin-top:.4rem}
-  .cap-cab .adorno{color:var(--sangre);margin-top:1.2rem}
-  .texto{font-size:var(--tam);line-height:1.75}
-  .texto p{margin:0 0 1.1em;text-align:left;hyphens:auto;-webkit-hyphens:auto}
+  .cap-cab{text-align:center;margin:0 0 2.8rem}
+  .cap-cab .num{color:var(--laton);font-family:"IM Fell English",serif;font-style:italic;font-size:1.2rem}
+  .cap-cab h2{font-size:clamp(2.2rem,9vw,3.3rem);margin-top:.4rem}
+  .cap-cab .meta{color:var(--tenue);font-style:italic;font-size:1rem;margin-top:.8rem}
+  .adorno{display:flex;align-items:center;gap:1rem;color:var(--sangre);margin-top:1.6rem}
+  .adorno::before,.adorno::after{content:"";flex:1;height:1px;background:var(--linea)}
+  .texto{font-size:var(--tam);line-height:1.72}
+  .texto p{margin:0 0 .5em;text-indent:1.6em;text-align:left;hyphens:auto;-webkit-hyphens:auto}
   @media (min-width:700px){.texto p{text-align:justify}}
+  .texto p:first-child,.texto .escena+p{text-indent:0}
+  .texto p:first-child::first-line,.texto .escena+p::first-line{font-variant-caps:small-caps;letter-spacing:.04em}
   .texto p:first-child::first-letter{
     font-family:"IM Fell English",serif;float:left;font-size:3.9em;line-height:.85;
-    padding:.08em .1em 0 0;color:var(--sangre)
+    padding:.08em .1em 0 0;color:var(--sangre);font-variant-caps:normal
   }
   :root[data-tema="oscuro"] .texto p:first-child::first-letter{color:var(--laton)}
-  .texto .escena{text-align:center!important;color:var(--sangre);letter-spacing:.6em;margin:2em 0}
-  .texto .escena::first-letter{all:unset}
-  .nav{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--linea)}
+  .texto .escena{text-align:center!important;text-indent:0;color:var(--sangre);letter-spacing:.6em;margin:1.8em 0}
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-top:3.5rem;padding-top:1.6rem;border-top:4px double var(--linea)}
   .nav a{color:var(--texto);text-decoration:none;font-size:1.02rem;border:1px solid var(--linea);border-radius:.35rem;padding:.65rem 1rem}
   .nav a:hover{border-color:var(--laton);color:var(--laton)}
   .nav span{color:var(--tenue);font-size:1rem}
 
-  footer{border-top:1px solid var(--linea);text-align:center;color:var(--tenue);font-size:.9rem;padding:1.6rem 1.2rem}
+  /* Colofón */
+  footer{
+    border-top:4px double var(--laton);color:var(--tenue);font-size:.95rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem 1.5rem;
+    padding:1.3rem max(1.4rem,calc((100% - 60rem)/2))
+  }
+  footer em{font-family:"IM Fell English",Georgia,serif;font-size:1.1rem;color:var(--texto)}
 </style>
 </head>
 <body>
@@ -121,22 +145,31 @@
   <!-- PORTADA -->
   <section id="vista-inicio">
     <div class="hero">
-      <svg class="emblema" viewBox="0 0 200 200" fill="none" stroke="currentColor" aria-hidden="true">
-        <circle cx="100" cy="100" r="94" stroke-width="1.5"/>
-        <circle cx="100" cy="100" r="88" stroke-width=".8"/>
-        <circle cx="100" cy="100" r="76" stroke-width="10" stroke-dasharray="1.6 7.4" opacity=".75"/>
-        <circle cx="100" cy="100" r="62" stroke-width="1"/>
-        <path stroke-width="2" stroke-linejoin="round" d="M100 44C112 70 134 84 134 110C134 130 119 145 100 145C81 145 66 130 66 110C66 93 77 84 85 70C88 81 94 86 98 84C96 70 96 58 100 44Z"/>
-        <path stroke-width="1.6" stroke-linejoin="round" d="M100 88C106 101 117 108 117 121C117 132 110 138 100 138C90 138 83 132 83 121C83 110 92 104 100 88Z"/>
-      </svg>
-      <h1>Dioses Modernos</h1>
-      <p class="sub">La Paga del Pecado es Muerte</p>
-      <p class="genero">Novela de fantasía oscura, publicada por entregas</p>
-      <p class="sinopsis" id="sinopsis"></p>
-      <a class="boton" href="#prologo">Empezar a leer</a>
-      <p class="autor">Por Luis Tangarife</p>
+      <div class="mastil"><span>Novela de fantasía oscura</span><span>Publicación por entregas</span></div>
+      <div class="portada">
+        <div class="marco">
+          <svg class="emblema" viewBox="0 0 200 200" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="100" cy="100" r="94" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="88" stroke-width=".8"/>
+            <circle cx="100" cy="100" r="76" stroke-width="10" stroke-dasharray="1.6 7.4" opacity=".75"/>
+            <circle cx="100" cy="100" r="62" stroke-width="1"/>
+            <path stroke-width="2" stroke-linejoin="round" d="M100 44C112 70 134 84 134 110C134 130 119 145 100 145C81 145 66 130 66 110C66 93 77 84 85 70C88 81 94 86 98 84C96 70 96 58 100 44Z"/>
+            <path stroke-width="1.6" stroke-linejoin="round" d="M100 88C106 101 117 108 117 121C117 132 110 138 100 138C90 138 83 132 83 121C83 110 92 104 100 88Z"/>
+          </svg>
+        </div>
+        <div class="portada-texto">
+          <h1>Dioses<br>Modernos</h1>
+          <p class="sub">La Paga del Pecado es Muerte</p>
+          <div class="regla"></div>
+          <p class="sinopsis" id="sinopsis"></p>
+          <div class="acciones">
+            <a class="boton" href="#prologo">Empezar a leer</a>
+            <span class="byline">Escrito por Luis Tangarife</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="envoltura contenido">
+    <div class="contenido">
       <h2 class="seccion">Contenido</h2>
       <ul class="lista" id="lista"></ul>
     </div>
@@ -147,6 +180,7 @@
     <header class="cap-cab">
       <div class="num" id="cap-num"></div>
       <h2 id="cap-titulo"></h2>
+      <div class="meta" id="cap-meta"></div>
       <div class="adorno">✦</div>
     </header>
     <div class="texto" id="cap-texto"></div>
@@ -154,7 +188,10 @@
   </article>
 </main>
 
-<footer>© 2026 Luis Tangarife. Todos los derechos reservados.</footer>
+<footer>
+  <em>Dioses Modernos</em>
+  <span>© 2026 Luis Tangarife. Todos los derechos reservados.</span>
+</footer>
 
 <script>
 /* =====================================================
@@ -258,6 +295,7 @@ el Nirvana.`
 /* ================= A partir de aquí no hace falta tocar nada ================= */
 const ROMANOS = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"];
 const $ = id => document.getElementById(id);
+const minutos = c => Math.max(1, Math.round(c.texto.trim().split(/\s+/).length / 200));
 const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 
 // Numera solo los capítulos (el prólogo queda aparte)
@@ -274,7 +312,7 @@ $("lista").innerHTML = capitulos.map(c => {
   const num = c.rotulo ? `<span class="num">${c.rotulo}</span>` : "";
   const cuerpo = `<span>${num}<h2>${esc(c.titulo)}</h2></span>`;
   return c.publicado
-    ? `<li><a href="#${c.id}">${cuerpo}<span class="estado">Leer</span></a></li>`
+    ? `<li><a href="#${c.id}">${cuerpo}<span class="estado">${minutos(c)} min de lectura</span></a></li>`
     : `<li><div class="cerrado">${cuerpo}<span class="estado">Próximamente</span></div></li>`;
 }).join("");
 
@@ -309,6 +347,7 @@ function mostrar(){
   $("cap-num").textContent = cap.rotulo;
   $("cap-num").classList.toggle("oculto", !cap.rotulo);
   $("cap-titulo").textContent = cap.titulo;
+  $("cap-meta").textContent = minutos(cap) + " min de lectura";
   $("cap-texto").innerHTML = cap.texto.trim().split(/\n\s*\n/).map(p =>
     p.trim() === "***" ? `<p class="escena">✦ ✦ ✦</p>` : `<p>${esc(p.trim()).replace(/\n/g,"<br>")}</p>`
   ).join("");
